@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:iwhollet/welcome_screen/welcome_screen.dart';
+import 'package:flutter_icon_network/flutter_icon_network.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:iwhollet/screens/welcome_screen/welcome_screen.dart';
 import 'routes.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
+  await FlutterIconNetwork.instance!
+      .init(host: "https://bicon.net.solidwallet.io/api/v3", isTestNet: true);
   runApp(const MyApp());
 }
 

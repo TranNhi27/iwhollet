@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../size_config.dart';
+import 'package:iwhollet/constants.dart';
+import '../../size_config.dart';
 import 'components/body.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: kPrimaryColor,
       body: Body(),
     );
   }
