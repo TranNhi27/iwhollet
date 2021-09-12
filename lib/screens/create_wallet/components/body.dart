@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icon_network/flutter_icon_network.dart';
 import 'package:iwhollet/models/UserWallet.dart';
 import 'package:iwhollet/screens/home/home_screen.dart';
@@ -32,6 +33,7 @@ class _BodyState extends State<Body> {
       userWallet.address = wallet.address!;
       userWallet.privateKey = wallet.privateKey!;
       print(userWallet);
+      _btnController.reset();
     });
   }
 
@@ -41,7 +43,7 @@ class _BodyState extends State<Body> {
     setState(() {
       userWallet.balance = balance.icxBalance;
       print(userWallet.balance);
-      _btnController.success();
+      _btnController.reset();
     });
   }
 
@@ -49,14 +51,17 @@ class _BodyState extends State<Body> {
       RoundedLoadingButtonController();
 
   Future<void> _getWalletByPrivateKey() async {
-    final wallet = await FlutterIconNetwork.instance!
+    try {final wallet = await FlutterIconNetwork.instance!
         .getWalletByPrivateKey(privateKeyCtrl.text);
     if (wallet == null) return;
     setState(() {
       userWallet.address = wallet['address'] as String;
       userWallet.privateKey = wallet['private_key'] as String;
       print(userWallet.address);
-    });
+    });}
+    on PlatformException catch(_) {
+      _btnController.error();
+    }
   }
 
   @override
@@ -102,7 +107,7 @@ class _BodyState extends State<Body> {
                       controller: _btnController,
                       onPressed: () async {
                         await _createWallet();
-                        Navigator.pushNamed(context, HomeScreen.routeName,
+                        Navigator.popAndPushNamed(context, HomeScreen.routeName,
                             arguments: userWallet);
                       },
                       child: Text(
@@ -127,7 +132,7 @@ class _BodyState extends State<Body> {
                               builder: (BuildContext context) => AlertDialog(
                                     title: Text('Enter your private key: '),
                                     content: Container(
-                                      height: getProportionateScreenHeight(90),
+                                      height: getProportionateScreenHeight(100),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
@@ -135,22 +140,17 @@ class _BodyState extends State<Body> {
                                               Border.all(color: kGrayColor)),
                                       child: TextFormField(
                                         controller: privateKeyCtrl,
-                                        maxLines: 1,
+                                        maxLines: 4,
                                       ),
                                     ),
                                     actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('Back')),
                                       RoundedLoadingButton(
-                                        width: getProportionateScreenWidth(50),
+                                        width: getProportionateScreenWidth(100),
                                           controller: _btnController,
                                           onPressed: () async {
                                             await _getWalletByPrivateKey();
                                             await _getIcxBalance();
-                                            Navigator.pushNamed(
+                                            Navigator.popAndPushNamed(
                                                 context, HomeScreen.routeName,
                                                 arguments: userWallet);
                                           },

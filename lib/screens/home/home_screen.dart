@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('ICON Wallet'),
         backgroundColor: kPrimaryColor,
         elevation: 0,
+
       ),
       backgroundColor: kPrimaryColor,
       body: Body(),
