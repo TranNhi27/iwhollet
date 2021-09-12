@@ -3,13 +3,13 @@
 A ICON Flutter project for studying purpose in Devera Academy
 
 ## Package I use:
-  cupertino_icons: ^1.0.2
-  flutter_icon_network: ^1.0.0
-  flutter_svg: ^0.22.0
-  get_storage: ^2.0.3
-  rounded_loading_button: ^2.0.6
-  url_launcher: ^6.0.10
-  intl: ^0.17.0
+- cupertino_icons: ^1.0.2
+- flutter_icon_network: ^1.0.0
+- flutter_svg: ^0.22.0
+- get_storage: ^2.0.3
+- rounded_loading_button: ^2.0.6
+- url_launcher: ^6.0.10
+- intl: ^0.17.0
 
 ## 2 Wallet to test:
 - testWallet: 
