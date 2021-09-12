@@ -40,7 +40,7 @@ class Body extends StatelessWidget {
             DefaultTextButton(
               text: 'Sign In',
               press: () {
-                // Navigator.pushNamed(context, HomeScreen.routeName);
+                Navigator.pushNamed(context, CreateWalletScreen.routeName);
               },
               textColor: kPrimaryColor,
               buttonColor: kWhiteColor,

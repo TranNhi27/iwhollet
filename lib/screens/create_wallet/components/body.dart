@@ -6,7 +6,6 @@ import 'package:flutter_icon_network/flutter_icon_network.dart';
 import 'package:iwhollet/models/UserWallet.dart';
 import 'package:iwhollet/screens/home/home_screen.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
